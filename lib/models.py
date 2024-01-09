@@ -1,6 +1,7 @@
-from sqlalchemy import create_engine, Integer, Column,String,ForeignKey
+from sqlalchemy import create_engine, Integer, Column, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+
 
 Base = declarative_base()
 engine  = create_engine('sqlite:///sales.db') #creates the engine sales
@@ -15,7 +16,7 @@ class Vendor(Base):
     product = Column(Integer())
     price = Column(Integer())
 # connection to admin
-    vendor_id = Column(Integer(), ForeignKey = ('admins.id'))
+   
     admin = relationship('Admin',backref='vendor')
 
     def __repr__(self):
@@ -30,7 +31,7 @@ class Customer(Base):
     id  = Column(Integer(),primary_key=True)
     name = Column(String())
 # connection to admin
-    customer_id = Column(Integer(), ForeignKey = ('admins.id'))
+   
     admin = relationship('Admin',backref='customer')
 
 
@@ -43,12 +44,13 @@ class Admin(Base):
     id = Column(Integer(),primary_key=True)
     name = Column(String())
 # establish connection to both vendor and customer 
-    vendor = relationship('Vendor',backref='admin')
-    customer = relationship('Customer',backref='admin')
+    customer_id = Column(Integer(), ForeignKey ('customers.id'))
+    vendor_id = Column(Integer(), ForeignKey('vendors.id'))
     
     def __repr__ (self):
         return f"Admin Name: {self.name}."
-        
+
+Base.metadata.create_all(engine)
     
         
 
