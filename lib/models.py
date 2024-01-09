@@ -6,8 +6,6 @@ from sqlalchemy.orm import relationship
 Base = declarative_base()
 engine  = create_engine('sqlite:///sales.db') #creates the engine sales
 
-
-
 class Vendor(Base):
     __tablename__ = 'vendors'
 
@@ -15,6 +13,7 @@ class Vendor(Base):
     name = Column(String())
     product = Column(Integer())
     price = Column(Integer())
+
 # connection to admin
    
     admin = relationship('Admin',backref='vendor')
@@ -30,6 +29,7 @@ class Customer(Base):
 
     id  = Column(Integer(),primary_key=True)
     name = Column(String())
+    location = Column(String())
 # connection to admin
    
     admin = relationship('Admin',backref='customer')
