@@ -13,14 +13,14 @@ session = Session()
 # session.query(Admin).delete()
 
 # seed data
-vendor = [
-    Vendor(name = fake.company(),
-           product = fake.word(),
-           price = fake.random_int(min=10,max=1000)
-           )
-    for _ in range(5)
-]
-session.add_all(vendor)
+# vendor = [
+#     Vendor(name = fake.company(),
+#            product = fake.word(),
+#            price = fake.random_int(min=10,max=1000)
+#            )
+#     for _ in range(5)
+# ]
+# session.add_all(vendor)
 
 # customer = [
 #     Customer(name = fake.name(),
@@ -35,7 +35,7 @@ admin = [
           customer_id = fake.random_int(min=1,max=5),
           vendor_id = fake.random_int(min=1,max=5)
           )
-    for _ in range(5)
+    for _ in range(1)
 ]
 session.add_all(admin)
 

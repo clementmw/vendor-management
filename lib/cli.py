@@ -23,7 +23,7 @@ def customer():
 def vendor ():
     name = click.prompt('Enter company  name')
     product = click.prompt('Enter vendors product')
-    price = click.prompt('Enter products price' )
+    price = click.prompt('Enter products price')
 
     new_vendor  = Vendor(name = name, product = product, price = price)
     session.add(new_vendor)
@@ -34,11 +34,8 @@ def vendor ():
 @click.command()
 def admin():
     name = click.prompt('Enter admin name')
-
-    customer_id = session.query(Customer.id).order_by (Customer.id.desc())
-    vendor_id = session.query(Vendor.id).order_by(Vendor.id.desc())
     
-    new_admin = Admin(name = name, customer_id = customer_id, vendor_id = vendor_id)
+    new_admin = Admin(name = name)
 
     session.add(new_admin)
     session.commit()
