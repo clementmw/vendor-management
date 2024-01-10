@@ -15,7 +15,6 @@ class Vendor(Base):
     price = Column(Integer())
 
 # connection to admin
-   
     admin = relationship('Admin',backref='vendor')
 
     def __repr__(self):
@@ -34,7 +33,7 @@ class Customer(Base):
    
     admin = relationship('Admin',backref='customer')
 
-
+# represent data 
     def __repr__(self):
         return f"{self.id},  Customer Name:  {self.name}."
     
@@ -43,6 +42,7 @@ class Admin(Base):
 
     id = Column(Integer(),primary_key=True)
     name = Column(String())
+
 # establish connection to both vendor and customer 
     customer_id = Column(Integer(), ForeignKey ('customers.id'))
     vendor_id = Column(Integer(), ForeignKey('vendors.id'))
