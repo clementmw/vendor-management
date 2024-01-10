@@ -8,9 +8,9 @@ Session = sessionmaker(bind = engine)
 session = Session()
 
 # to delete data from sqldatabase
-session.query(Vendor).delete()
-session.query(Customer).delete()
-session.query(Admin).delete()
+# session.query(Vendor).delete()
+# session.query(Customer).delete()
+# session.query(Admin).delete()
 
 # seed data
 vendor = [
@@ -22,13 +22,13 @@ vendor = [
 ]
 session.add_all(vendor)
 
-customer = [
-    Customer(name = fake.name(),
-             location = fake.city()
-             )
-    for _ in range(5)
-]
-session.add_all(customer)
+# customer = [
+#     Customer(name = fake.name(),
+#              location = fake.city()
+#              )
+#     for _ in range(2)
+# ]
+# session.add_all(customer)
 
 admin = [
     Admin(name = fake.name(),
