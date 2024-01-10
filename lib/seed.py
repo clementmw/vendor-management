@@ -14,7 +14,7 @@ session.query(Admin).delete()
 
 # seed data
 vendor = [
-    Vendor(name = fake.name(),
+    Vendor(name = fake.company(),
            product = fake.word(),
            price = fake.random_int(min=10,max=1000)
            )
