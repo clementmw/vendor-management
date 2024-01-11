@@ -34,25 +34,19 @@ def vendor ():
     click.echo(f'company {name}, product {product}, price {price}/= ')
 
 @click.command()
-def admin():
-    # admin_id = click.prompt('enter admin id')
-    # admin_id = session.query(Admin).filter_by(id=admin_id).first()
-    # if not admin_id:
-    #     click.echo('admin not found')
-    #     return
-    
-    admin_id = session.query(Admin).all()
-    if not admin_id:
-        click.echo('admin not found')
-        # retur
-    name = click.prompt('Enter admin name')
-    
-    new_admin = Admin(name = name)
+@click.option('--admin-name', default='Admin',prompt =('Enter admin name'), help='Name of the admin (default: Default Admin)')
+def admin(admin_name):
+    # Check if the admin with the specified name already exists
+    existing_admin = session.query(Admin).filter_by(name=admin_name).first()
 
-    session.add(new_admin)
-    session.commit()
+    if existing_admin:
+        click.echo(f'Admin {admin_name} already exists.')
+    else:
+        new_admin = Admin(name=admin_name)
+        session.add(new_admin)
+        session.commit()
+        click.echo(f'Admin {admin_name} added successfully.')
 
-    click.echo(f'admin {name} added sucessfully')
 
 
 if __name__ == '__main__':

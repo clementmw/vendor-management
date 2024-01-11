@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, Integer, Column, String, ForeignKey, Table
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from datetime import date
 
 Base = declarative_base()
 engine = create_engine('sqlite:///sales.db')  # creates the engine sales
@@ -50,6 +51,7 @@ class Admin(Base):
 
     id = Column(Integer(), primary_key=True)
     name = Column(String())
+    created_at = Column(String(), default=date.today())
 
     customers = relationship('Customer', back_populates='admin')
     vendors = relationship('Vendor', back_populates='admin')
