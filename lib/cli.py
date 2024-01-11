@@ -22,11 +22,12 @@ def customer():
 
 @click.command()
 def vendor ():
+    admin = click.prompt('enter admin id')
     name = click.prompt('Enter company  name')
     product = click.prompt('Enter vendors product')
     price = click.prompt('Enter products price')
 
-    new_vendor  = Vendor(name = name, product = product, price = price)
+    new_vendor  = Vendor(name = name, product = product, price = price, admin_id = admin )
     session.add(new_vendor)
     session.commit()
 
@@ -34,6 +35,16 @@ def vendor ():
 
 @click.command()
 def admin():
+    # admin_id = click.prompt('enter admin id')
+    # admin_id = session.query(Admin).filter_by(id=admin_id).first()
+    # if not admin_id:
+    #     click.echo('admin not found')
+    #     return
+    
+    admin_id = session.query(Admin).all()
+    if not admin_id:
+        click.echo('admin not found')
+        # retur
     name = click.prompt('Enter admin name')
     
     new_admin = Admin(name = name)
