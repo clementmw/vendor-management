@@ -1,40 +1,51 @@
 from faker import Faker
 from sqlalchemy.orm import sessionmaker
-from models import Base, engine, Vendor, Customer, Admin, vendor_customer
+from models import Base,engine,Vendor,Customer,Admin
 
-fake = Faker()
+fake  = Faker()
 
-Session = sessionmaker(bind=engine)
+Session = sessionmaker(bind = engine)
+session = Session()
 
-with Session() as session:
-    # seed data for Admin
-    admin_names = set()
-    admins = []
-    for _ in range(5):
-        admin_name = fake.name()
-        if admin_name not in admin_names:
-            admin_names.add(admin_name)
-            admins.append(Admin(name=admin_name))
-    session.add_all(admins)
-    session.commit()
+# to delete data from sqldatabase
+session.query(Vendor).delete()
+session.query(Customer).delete()
+session.query(Admin).delete()
 
-    # seed data for Vendors
-    for _ in range(5):
-        vendor = Vendor(
-            name=fake.company(),
-            product=fake.word(),
-            price=fake.random_int(min=10, max=1000),
-            admin_id=fake.random_int(min=1, max=5)
-        )
-        session.add(vendor)
-    session.commit()
+# seed data
+# vendors = [
+#     Vendor(name = fake.company(),
+#            product = fake.word(),
+#            price = fake.random_int(min=10,max=1000),
+#            admin_id = fake.random_int(min=1,max=5)
+#            )
+#     for _ in range(5)
+# ]
+# session.add_all(vendors)
 
-    # seed data for Customers
-    for _ in range(5):
-        customer = Customer(
-            name=fake.name(),
-            location=fake.city(),
-            admin_id=fake.random_int(min=1, max=5)
-        )
-        session.add(customer)
-    session.commit()
+# customers = [
+#     Customer(
+#             name = fake.name(),
+#              location = fake.city(),
+#              admin_id = admin.admin_id
+#              )
+#     for _ in range(5)
+# ]
+# session.add_all(customers)
+
+
+# admin = [
+
+#     Admin(name = fake.name()
+         
+          
+#           )
+#     for _ in range(5)
+# ]
+# session.add_all(admin)
+
+session.commit()
+
+
+session.close()
+
