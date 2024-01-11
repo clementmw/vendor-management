@@ -10,10 +10,11 @@ def cli():
 
 @click.command()
 def customer():
+    admin= click.prompt('enter admin id')
     name = click.prompt('Enter customer name')
     location = click.prompt('Enter customers location')
 
-    new_customer  = Customer(name = name, location = location)
+    new_customer  = Customer(name = name, location = location, admin_id=admin)
     session.add(new_customer)
     session.commit()
 

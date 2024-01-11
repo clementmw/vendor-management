@@ -30,14 +30,14 @@ session = Session()
 # ]
 # session.add_all(customer)
 
-admin = [
-    Admin(name = fake.name(),
-          customer_id = fake.random_int(min=1,max=5),
-          vendor_id = fake.random_int(min=1,max=5)
-          )
-    for _ in range(1)
-]
-session.add_all(admin)
+# admin = [
+#     Admin(name = fake.name(),
+#           customer_id = fake.random_int(min=1,max=5),
+#           vendor_id = fake.random_int(min=1,max=5)
+#           )
+#     for _ in range(1)
+# ]
+# session.add_all(admin)
 
 session.commit()
 
