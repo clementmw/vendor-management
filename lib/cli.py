@@ -4,13 +4,14 @@ from models import Customer,Vendor,Admin
 
 @click.group #to handle the click groups
 def cli():
-    pass
+    click.echo('Welcome To Vendor Management System:\n')
 
 
 
 @click.command()
 def customer():
-    admin= click.prompt('enter admin id')
+  
+    admin= click.prompt('Enter Admin Id')
     name = click.prompt('Enter customer name')
     location = click.prompt('Enter customers location')
 
@@ -22,7 +23,7 @@ def customer():
 
 @click.command()
 def vendor ():
-    admin = click.prompt('enter admin id')
+    admin = click.prompt('Enter Admin Id')
     name = click.prompt('Enter company  name')
     product = click.prompt('Enter vendors product')
     price = click.prompt('Enter products price')
@@ -34,7 +35,7 @@ def vendor ():
     click.echo(f'company {name}, product {product}, price {price}/= ')
 
 @click.command()
-@click.option('--admin-name', default='Admin',prompt =('Enter admin name'), help='Name of the admin (default: Default Admin)')
+@click.option('--admin-name', default='Admin',prompt =('Enter Admin Name'), help='Name of the admin (default: Default Admin)')
 def admin(admin_name):
     # Check if the admin with the specified name already exists
     existing_admin = session.query(Admin).filter_by(name=admin_name).first()

@@ -1,16 +1,18 @@
 from seed import session
 from models import Customer,Admin,Vendor
 
+# def cli()
 
 def query_vendors_and_customers():
     # Query all vendors and their associated customers
     vendors = session.query(Vendor).all()
 
     for vendor in vendors:
+        
         print(f"\nVendor: {vendor.name}, Product: {vendor.product}, Price: {vendor.price}")
-        print("Customers:")
-        for customer in vendor.customers:
-            print(f"  - {customer.name}")
+        # print("Customers:")
+        # for customer in vendor.customers:
+        #     print(f"  - {customer.name}")
 
 def query_customers_and_vendors():
     # Query all customers and their associated vendors
@@ -18,9 +20,9 @@ def query_customers_and_vendors():
 
     for customer in customers:
         print(f"\nCustomer: {customer.name}, Location: {customer.location}")
-        print("Vendors:")
-        for vendor in customer.vendors:
-            print(f"  - {vendor.name}, Product: {vendor.product}, Price: {vendor.price}")
+        # print("Vendors:")
+        # for vendor in customer.vendors:
+        #     print(f"  - {vendor.name}, Product: {vendor.product}, Price: {vendor.price}")
 
 def query_admins():
     # Query all admins and their associated customers and vendors
@@ -36,8 +38,8 @@ def query_admins():
             print(f"  - {vendor.name}")
 
 if __name__ == "__main__":
-    query_vendors_and_customers()
-    query_customers_and_vendors()
+    # query_vendors_and_customers()
+    # query_customers_and_vendors()
     query_admins()
 
 session.close()

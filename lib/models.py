@@ -6,7 +6,7 @@ from datetime import date
 Base = declarative_base()
 engine = create_engine('sqlite:///sales.db')  # creates the engine sales
 
-# relationship table
+# many -many relationship table
 vendor_customer = Table(
     'vendor_customer',
     Base.metadata,
