@@ -53,7 +53,7 @@ class Admin(Base):
     name = Column(String())
     created_at = Column(String(), default=date.today())
 
-    customers = relationship('Customer', back_populates='admin')
+    customers = relationship('Customer', back_populates='admin')  #USE back_ref=''
     vendors = relationship('Vendor', back_populates='admin')
 
     def __repr__(self):

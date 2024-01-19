@@ -19,7 +19,7 @@ def customer():
     session.add(new_customer)
     session.commit()
 
-    click.echo(f'customers {name}, from {location}, added sucessfully')
+    click.echo(f'customers {name}, from {location}, added successfully')
 
 @click.command()
 def vendor ():
